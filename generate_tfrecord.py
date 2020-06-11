@@ -24,7 +24,7 @@ from collections import namedtuple
 flags = tf.app.flags
 flags.DEFINE_string('csv_input', '', 'Path to the CSV input')
 flags.DEFINE_string('output_path', '', 'Path to output TFRecord')
-flags.DEFINE_string('image_dir', '', 'Path to images')
+flags.DEFINE_string('image_dir', 'images/', 'Path to images')
 FLAGS = flags.FLAGS
 
 # classes
@@ -84,6 +84,7 @@ def main(_):
     with open(classes_dir) as c:
         for line in c:
             parsed_classes.append(line)
+        print('finished generating classes')
 
     writer = tf.io.TFRecordWriter(FLAGS.output_path)
     path = os.path.join(FLAGS.image_dir)
